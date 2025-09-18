@@ -32,4 +32,26 @@ public class ProductServiceTest {
 
         assertThrows(IllegalArgumentException.class, () -> svc.createProduct("Monitor", "LED", -1));
     }
+
+    @Test
+    void listShouldBeEmptyWhenNoProducts() {
+        var svc = new ProductService(new ProductRepository());
+        assertTrue(svc.listProducts().isEmpty());
+    }
+
+    @Test
+    void listShouldReturnInsertedProducts() {
+        var repo = new ProductRepository();
+        var svc = new ProductService(repo);
+
+        svc.createProduct("Teclado", "Mecânico", 10);
+        svc.createProduct("Mouse", "Óptico", 5);
+
+        var list = svc.listProducts();
+        assertEquals(2, list.size());
+        assertEquals("Teclado", list.get(0).getName());
+    }
+    
 }
+
+

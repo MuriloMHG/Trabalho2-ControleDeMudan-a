@@ -9,11 +9,24 @@ public class ProductController {
 
     public ProductController() {
         this.service = new ProductService(new ProductRepository());
+        
     }
 
-    // Caso de uso: cadastrar produto
+
     public Product register(String name, String description, int quantity) {
         return service.createProduct(name, description, quantity);
     }
+
+    public java.util.List<com.sces.domain.Product> listAll() {
+
+    try {
+        var serviceField = this.getClass().getDeclaredField("service"); 
+    } catch (Exception ignored) {}
+
+
+    return service.listProducts();
 }
+}
+
+
 

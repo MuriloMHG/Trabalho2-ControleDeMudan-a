@@ -10,6 +10,7 @@ public class App {
         var controller = new ProductController();
         System.out.println("=== SCES | Cadastro de Produto (US#1) ===");
         System.out.println("1) Cadastrar novo produto");
+        System.out.println("2) Listar todos os produtos");
         System.out.println("0) Sair");
 
         try (var sc = new Scanner(System.in)) {
@@ -41,6 +42,15 @@ public class App {
                     } catch (Exception e) {
                         System.out.println("ERRO inesperado: " + e.getMessage());
                     }
+                } else if ("2".equals(opt)) { // NOVO bloco
+                        var list = controller.listAll();
+                        if (list.isEmpty()) {
+                        System.out.println("Nenhum produto cadastrado.");
+                    }  else {
+                        System.out.println("\nID | Nome | Descrição | Quantidade");
+                        list.forEach(p -> System.out.printf("%d | %s | %s | %d%n",
+                        p.getId(), p.getName(), p.getDescription(), p.getQuantity()));
+                    }            
                 } else {
                     System.out.println("Opção inválida.");
                 }
