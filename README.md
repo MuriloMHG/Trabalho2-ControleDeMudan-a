@@ -5,7 +5,7 @@ Trabalho2 de DevOps - Controle de Mudança
 - Pré-requisitos: Java 17+, Maven
 - Testes: `mvn test`
 - Build: `mvn package`
-
+-java -cp target/classes com.sces.app.App
 
 ## Fluxo de trabalho (Git + Taiga)
 - Branch por US/tarefa: `feature/<ID>-descricao`
