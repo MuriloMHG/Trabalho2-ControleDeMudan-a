@@ -51,6 +51,35 @@ public class ProductServiceTest {
         assertEquals(2, list.size());
         assertEquals("Teclado", list.get(0).getName());
     }
+
+    @Test
+    void shouldAddStockWhenIdExistsAndAmountPositive() {
+        var repo = new ProductRepository();
+        var svc = new ProductService(repo);
+
+        var p = svc.createProduct("Cabo", "USB-C", 1);
+        svc.addStock(p.getId(), 4);
+
+        var after = svc.listProducts().get(0);
+        assertEquals(5, after.getQuantity());
+    }
+
+    @Test
+    void shouldFailWhenProductNotFound() {
+        var svc = new ProductService(new ProductRepository());
+        assertThrows(IllegalArgumentException.class, () -> svc.addStock(999, 1));
+    }
+
+    @Test
+    void shouldFailWhenAmountNotPositive() {
+        var repo = new ProductRepository();
+        var svc = new ProductService(repo);
+
+        var p = svc.createProduct("SSD", "NVMe", 2);
+        assertThrows(IllegalArgumentException.class, () -> svc.addStock(p.getId(), 0));
+        assertThrows(IllegalArgumentException.class, () -> svc.addStock(p.getId(), -3));
+    }
+
     
 }
 

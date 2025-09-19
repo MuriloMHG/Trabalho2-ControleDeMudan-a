@@ -18,15 +18,11 @@ public class ProductController {
     }
 
     public java.util.List<com.sces.domain.Product> listAll() {
+        return service.listProducts();
+    }
 
-    try {
-        var serviceField = this.getClass().getDeclaredField("service"); 
-    } catch (Exception ignored) {}
-
-
-    return service.listProducts();
+    public void addStock(int productId, int amount) {
+        service.addStock(productId, amount);
+    }
+    
 }
-}
-
-
-

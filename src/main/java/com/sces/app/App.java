@@ -11,6 +11,7 @@ public class App {
         System.out.println("=== SCES | Cadastro de Produto (US#1) ===");
         System.out.println("1) Cadastrar novo produto");
         System.out.println("2) Listar todos os produtos");
+        System.out.println("3) Adicionar unidades ao estoque");
         System.out.println("0) Sair");
 
         try (var sc = new Scanner(System.in)) {
@@ -43,14 +44,29 @@ public class App {
                         System.out.println("ERRO inesperado: " + e.getMessage());
                     }
                 } else if ("2".equals(opt)) { // NOVO bloco
-                        var list = controller.listAll();
-                        if (list.isEmpty()) {
+                    var list = controller.listAll();
+                    if (list.isEmpty()) {
                         System.out.println("Nenhum produto cadastrado.");
                     }  else {
                         System.out.println("\nID | Nome | Descrição | Quantidade");
                         list.forEach(p -> System.out.printf("%d | %s | %s | %d%n",
-                        p.getId(), p.getName(), p.getDescription(), p.getQuantity()));
-                    }            
+                            p.getId(), p.getName(), p.getDescription(), p.getQuantity()));
+                    }
+                } else if ("3".equals(opt)) {
+                    try {
+                        System.out.print("ID do produto: ");
+                        int id = Integer.parseInt(sc.nextLine().trim());
+
+                        System.out.print("Quantidade a adicionar (> 0): ");
+                        int amount = Integer.parseInt(sc.nextLine().trim());
+
+                        controller.addStock(id, amount);
+                        System.out.println("OK! Estoque atualizado.");
+                    } catch (NumberFormatException e) {
+                        System.out.println("ERRO: valores devem ser inteiros.");
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("ERRO: " + e.getMessage());
+                    }   
                 } else {
                     System.out.println("Opção inválida.");
                 }
