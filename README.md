@@ -12,5 +12,5 @@ Trabalho2 de DevOps - Controle de Mudança
 
 
 ## Links 
-- Taiga: [https://teams.microsoft.com/l/message/19:b844e135-8380-452a-ab0c-a28220abea2d_c73fe1c3-a97f-4d59-80ca-0c4a94413144@unq.gbl.spaces/1758241469771?context=%7B%22contextType%22%3A%22chat%22%7D]
+- Taiga: [https://tree.taiga.io/project/murilomhg-sces-controle-de-estoque/timeline]
 
